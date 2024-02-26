@@ -16,7 +16,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_26_043248) do
 
   create_table "categories", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "name"
+    t.string "name", null: false
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -26,11 +26,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_26_043248) do
   create_table "tasks", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "category_id", null: false
-    t.string "title"
+    t.string "title", null: false
     t.text "description"
-    t.datetime "due_date"
+    t.datetime "due_date", null: false
     t.datetime "scheduled_date"
-    t.string "status"
+    t.string "status", default: "pending", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_tasks_on_category_id"

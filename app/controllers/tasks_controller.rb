@@ -53,7 +53,12 @@ class TasksController < ApplicationController
     end
 
     def today
-        @tasks = current_user.tasks.where("due_date = ? OR scheduled_date = ?", Date.today, Date.today)
+        if params[:category_id]
+          @category = Category.find(params[:category_id])
+          @tasks = @category.tasks.where("due_date = ? OR scheduled_date = ?", Date.today, Date.today)
+        else
+          @tasks = current_user.tasks.where("due_date = ? OR scheduled_date = ?", Date.today, Date.today)
+        end
         
         render :index
     end

@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
     before_action :authenticate_user! # user must be logged in before accessing category actions
     before_action :set_category, only: [:show, :edit, :update, :destroy]
+    before_action :set_sidebar, except: [:index]
 
     # GET /categories
     def index
@@ -47,10 +48,18 @@ class CategoriesController < ApplicationController
     # DELETE /categories/:id
     def destroy
         # The category is already set by the before_action callback
+        previous_category = current_user.categories
+                        .where('created_at < ?', @category.created_at)
+                        .order(created_at: :desc)
+                        .first
 
         @category.destroy
 
-        redirect_to categories_path, notice: 'Category was successfully deleted.'
+        if previous_category
+            redirect_to category_path(previous_category), notice: 'Category was successfully deleted.'
+        else
+            redirect_to categories_path, notice: 'Category was successfully deleted.'
+        end
     end
 
     private
@@ -62,5 +71,9 @@ class CategoriesController < ApplicationController
     # Only allow a list of trusted parameters through.
     def category_params
         params.require(:category).permit(:name, :description)
+    end
+
+    def set_sidebar
+        @show_sidebar = true
     end
 end

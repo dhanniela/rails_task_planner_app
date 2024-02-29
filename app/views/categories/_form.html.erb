@@ -1,0 +1,23 @@
+<%= form_with(model: category, local: true) do |form| %>
+    <% if category.errors.any? %>
+        <div class="errors">
+            <% category.errors.full_messages.each do |message| %>
+                <%= message %>
+            <% end %>
+        </div>
+    <% end %>
+
+    <div class="field">
+        <%= form.label :name %>
+        <%= form.text_field :name %>
+    </div>
+
+    <div class="field">
+        <%= form.label :description %>
+        <%= form.text_area :description %>
+    </div>
+
+    <div class="actions">
+        <%= form.submit %>
+    </div>
+<% end %>

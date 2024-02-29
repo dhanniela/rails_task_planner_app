@@ -21,9 +21,11 @@
     <% end %>
 
     <%= render 'layouts/navbar' %>
-    
+
     <div>
-      <%= render 'layouts/categories_sidebar' %>
+      <% if @show_sidebar %>
+        <%= render 'layouts/categories_sidebar' %>
+      <% end %>
       <%= yield %>
     </div>
   </body>

@@ -1,0 +1,16 @@
+<nav class="navbar">
+    <div class="navbar-content">
+        <h1><%= link_to 'TickTask', today_tasks_path %></h1>
+        <ul class="navbar-menu">
+            <% if user_signed_in? %>
+                <li><%= link_to 'Profile', edit_user_registration_path %></li>
+            <% else %>
+                <!-- Links for Unauthenticated Users and Only show these if on pages other than login/sign up forms -->
+                <% unless on_login_or_signup_page? %>
+                    <li><%= link_to 'Login', new_user_session_path %></li>
+                    <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+                <% end %>
+            <% end %>
+        </ul>
+    </div>
+</nav>

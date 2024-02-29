@@ -1,0 +1,14 @@
+<% if user_signed_in? %>
+  <aside class="categories-sidebar">
+    <div class="sidebar-content">
+      <h3>Categories</h3>
+      <ul class="categories-list">
+        <li><%= link_to "New Category", new_category_path %></li>
+        <% current_user.categories.each do |category| %>
+          <li><%= link_to category.name, category %></li>
+        <% end %>
+        <li><%= link_to 'Logout', destroy_user_session_path, method: :delete %></li> 
+      </ul>
+    </div>
+  </aside>
+<%end%>

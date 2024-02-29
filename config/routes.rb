@@ -4,8 +4,6 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  get '/logout', to: 'application#logout'
-
   resources :categories do
     resources :tasks do
       collection do

@@ -1,0 +1,38 @@
+<%= form_with(model: [ @category, @task ], local: true) do |form| %>
+  <% if task.errors.any? %>
+        <div class="errors">
+            <% task.errors.full_messages.each do |message| %>
+                <%= message %>
+            <% end %>
+        </div>
+    <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :task_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :task_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :due_date %>
+    <%= form.datetime_local_field :due_date, id: :task_due_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :scheduled_date %>
+    <%= form.datetime_local_field :scheduled_date, id: :task_scheduled_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.select :status, ['pending', 'completed'], id: :task_status %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

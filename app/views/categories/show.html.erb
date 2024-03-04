@@ -3,3 +3,22 @@
 
 <%= link_to 'Edit Category', edit_category_path(@category), class: "button" %> |
 <%= link_to "Delete Category", @category, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}%>
+
+
+<h2>Tasks</h2>
+<%= link_to 'Add New Task', new_category_task_path(@category) %>
+
+<ul>
+  <% @category.tasks.each do |task| %>
+    <li>
+        <p>Title:<%= task.title %></p>
+        <p>Description:<%= task.description%></p>
+        <p>Due Date:<%= task.due_date.strftime("%B %d, %Y %I:%M %p") %></p>
+        <p>Schedule Date:<%= task.scheduled_date.strftime("%B %d, %Y %I:%M %p") %></p>
+        <p>Status:<%=task.status %></p>
+
+        <%= link_to 'Edit', edit_category_task_path(@category, task) %> |
+        <%= link_to 'Delete', category_task_path(@category, task), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+    </li>
+  <% end %>
+</ul>

@@ -6,6 +6,8 @@ class CategoriesController < ApplicationController
     # GET /categories
     def index
         @categories = current_user.categories
+        @scheduled_today= current_user.tasks.where("DATE(scheduled_date) = ?", Date.today)
+        @due_today = current_user.tasks.where("DATE(due_date) = ?", Date.today)
     end
 
     # GET /categories/:id

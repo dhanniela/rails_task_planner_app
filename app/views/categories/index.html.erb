@@ -1,12 +1,31 @@
-<h1>Categories</h1>
+<h1 class="today_title">Today</h1>
+<div class="today">
+    <div class="scheduled_today">
+        <h2>Scheduled Today</h2>
+        <% @scheduled_today.each do |task| %>
+            <div class="scheduled_task">
+                <%= task.title %>
+            </div>
+        <% end %>
+    </div>
+    <div class="due_today">
+        <h2>Due Today</h2>
+        <% @due_today.each do |task| %>
+            <div class="due_task">
+                <%= task.title %>
+            </div>
+        <% end %>
+    </div>
+</div>
 
-<%= link_to 'New Category', new_category_path %>
-
-<ul>
-  <% @categories.each do |category| %>
-    <li>
-      <%= link_to category.name, category %>
-      - <%= category.description %>
-    </li>
-  <% end %>
-</ul>
+<div class="category_root">
+    <h1>Categories</h1>
+    <%= link_to 'New Category', new_category_path, class: 'new_category_link' %>
+    <ul class="category_list">
+        <% @categories.each do |category| %>
+            <li class="category_card">
+                <%= link_to category.name, category, class: 'category_name' %>
+            </li>
+        <% end %>
+    </ul>
+</div>

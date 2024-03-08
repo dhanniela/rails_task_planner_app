@@ -1,14 +1,16 @@
 <% if user_signed_in? %>
-  <aside class="categories-sidebar">
-    <div class="sidebar-content">
-      <h3>Categories</h3>
-      <ul class="categories-list">
-        <li><%= link_to "New Category", new_category_path %></li>
-        <% current_user.categories.each do |category| %>
-          <li><%= link_to category.name, category %></li>
-        <% end %>
-        <li><%= link_to 'Logout', destroy_user_session_path, data: {turbo_method: :delete} %></li> 
-      </ul>
-    </div>
-  </aside>
+    <section class="categories_sidebar">
+        <div class="sidebar_content">
+            <h2>Categories</h2>
+            <%= link_to "New Category", new_category_path, class: 'new_category_link' %>
+            <ul class="categories_list">
+                <% current_user.categories.each do |category| %>
+                    <li class="category_card">
+                        <%= link_to category.name, category, class: 'category_name_link' %>
+                    </li>
+                <% end %>
+            </ul>
+            <%= link_to 'Logout', destroy_user_session_path, data: {turbo_method: :delete}, class: 'logout_link' %> 
+        </div>
+    </section>
 <%end%>

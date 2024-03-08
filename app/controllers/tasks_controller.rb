@@ -24,6 +24,17 @@ class TasksController < ApplicationController
     def create
         # The task is already set by the before_action callback
             # set_category
+
+        if params[:task][:scheduled_date].present? && params[:task][:scheduled_time].present?
+            combined_datetime = DateTime.parse("#{params[:task][:scheduled_date]} #{params[:task][:scheduled_time]}")
+            params[:task][:scheduled_date] = combined_datetime
+        end
+
+        if params[:task][:due_date].present? && params[:task][:due_time].present?
+            combined_due_datetime = DateTime.parse("#{params[:task][:due_date]} #{params[:task][:due_time]}")
+            params[:task][:due_date] = combined_due_datetime
+        end
+
         @task = @category.tasks.build(task_params.merge(user: current_user))
 
         if @task.save
@@ -43,7 +54,16 @@ class TasksController < ApplicationController
     def update
         # The task is already set by the before_action callback
             # set_task_with_category
+        if params[:task][:scheduled_date].present? && params[:task][:scheduled_time].present?
+            combined_datetime = DateTime.parse("#{params[:task][:scheduled_date]} #{params[:task][:scheduled_time]}")
+            params[:task][:scheduled_date] = combined_datetime
+        end
 
+        if params[:task][:due_date].present? && params[:task][:due_time].present?
+            combined_due_datetime = DateTime.parse("#{params[:task][:due_date]} #{params[:task][:due_time]}")
+            params[:task][:due_date] = combined_due_datetime
+        end
+        
         if @task.update(task_params)
             redirect_to @category, notice: 'Task was successfully updated.'
         else

@@ -1,16 +1,22 @@
 <% if user_signed_in? %>
-    <section class="categories_sidebar">
+    <div class="categories_sidebar">
         <div class="sidebar_content">
-            <h2>Categories</h2>
-            <%= link_to "New Category", new_category_path, class: 'new_category_link' %>
+            <div class="sidebar_header">
+                <h2>Categories</h2>
+                <%= link_to new_category_path, class: 'new_category_link' do %>
+                    <i class="material-icons">add</i>
+                <% end %>
+            </div>
             <ul class="categories_list">
                 <% current_user.categories.each do |category| %>
-                    <li class="category_card">
+                    <% is_active = "active" if current_page?(category) %>
+                    <li class="category_card <%= is_active %>">
+                    <% if category.name != nil %>
                         <%= link_to category.name, category, class: 'category_name_link' %>
+                    <%end%>
                     </li>
                 <% end %>
             </ul>
-            <%= link_to 'Logout', destroy_user_session_path, data: {turbo_method: :delete}, class: 'logout_link' %> 
         </div>
-    </section>
+    </div>
 <%end%>

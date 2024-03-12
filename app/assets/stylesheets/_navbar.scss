@@ -1,0 +1,72 @@
+.navbar {
+    background-color: #f1dddd;
+    color: #593b3a;
+    padding: 10px 0; 
+    font-family: "Poppins", sans-serif;
+    border-radius: 0 0 20px 20px;
+}
+
+.navbar_content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    font-size: 25px;
+    margin: 0 60px;
+    text-decoration: none;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+
+.title .clock-icon {
+    position: absolute;
+    display: none;
+    font-size: 28px; 
+    vertical-align: middle;
+    left: -30px;
+    top: 5px;
+    font-weight: bold;
+} 
+
+.title:hover .clock-icon {
+    display: inline-block;
+    animation: spinClock 2s linear infinite;
+}
+
+.navbar_menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #593b3a;
+    list-style: none; 
+    margin: 0 20px;
+    padding: 0;
+}
+
+.navbar_buttons {
+    margin-left: 20px; 
+    cursor: pointer;
+    padding: 8px 20px;
+}
+
+.navbar_buttons a {
+    text-decoration: none; 
+}
+
+.navbar_buttons:hover {
+    background-color: #593b3a;
+    color: #f8cccc;
+    border-radius: 20px;
+}
+
+@keyframes spinClock {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+}

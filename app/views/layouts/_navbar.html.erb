@@ -1,9 +1,15 @@
 <nav class="navbar">
     <div class="navbar_content">
-        <h1 class="title"><%= link_to 'TickTask', today_tasks_path %></h1>
+        <h1 class="title">
+            <%= link_to categories_path do %>
+                <span class="material-icons clock-icon">access_time</span>
+                TickTask
+            <% end %>
+        </h1>
         <ul class="navbar_menu">
             <% if user_signed_in? %>
                 <li class="navbar_buttons"><%= link_to 'Profile', edit_user_registration_path%></li>
+                <li class="navbar_buttons"><%= link_to 'Logout', destroy_user_session_path, data: {turbo_method: :delete}, class: 'logout_link' %> 
             <% else %>
                 <!-- Links for Unauthenticated Users and Only show these if on pages other than login/sign up forms -->
                 <% unless on_login_or_signup_page? %>

@@ -1,0 +1,55 @@
+@import url("https://fonts.cdnfonts.com/css/poppins");
+$fontStyle: "Poppins", sans-serif;
+$fontColor: #593b3a;
+$hoverColor: #f8cccc;
+$backgroundColor: #f1dddd;
+
+body {
+    font-family: $fontStyle;
+    background-color: #f1dddd;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.content {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    min-height: 100vh;
+    transition: margin-left 0.3s ease; 
+}
+
+ul {
+    list-style-type:none;
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    text-decoration: none;
+    color: inherit;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+  
+.notice, .alert {
+    padding: 10px;
+    margin: 10px 0;
+}
+  
+.notice {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+  
+.alert {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+@import 'navbar';
+@import 'sidebar';

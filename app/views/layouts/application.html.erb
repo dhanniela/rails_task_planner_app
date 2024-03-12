@@ -6,6 +6,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= stylesheet_link_tag 'https://fonts.googleapis.com/icon?family=Material+Icons' %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <!--%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %> -->
     <%= javascript_importmap_tags %>
@@ -22,10 +23,17 @@
 
     <%= render 'layouts/navbar' %>
 
-    <% if @show_sidebar %>
-      <%= render 'layouts/categories_sidebar' %>
-    <% end %>
-    
-    <%= yield %>
+    <div class="content">
+        <% if @show_sidebar %>
+          <section class="sidebar">
+            <%= render 'layouts/categories_sidebar' %>
+          </section>
+        <% end %>
+      
+      <section class="page_content">
+        <%= yield %>
+      </section>
+    </div>
+
   </body>
 </html>

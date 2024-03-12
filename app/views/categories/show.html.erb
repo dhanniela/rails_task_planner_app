@@ -1,46 +1,51 @@
-<section class="category_task_container">
+<div class="category_task_container">
     <div class="category_container">
-        <div class="category">
+        <div class="category_title">
             <h1 class="category_name"><%= @category.name %></h1>
             <p class="category_description"><%= @category.description %></p>
-        <div>
-
+        </div>
         <div class="buttons">
-            <%= link_to 'Edit Category', edit_category_path(@category), class: 'edit_category_link' %> |
-            <%= link_to "Delete Category", @category, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'delete_category_link' %>
+            <%= link_to edit_category_path(@category), class: 'edit_category_link' do %>
+                <i class="material-icons">edit</i>
+            <% end %>
+            <%= link_to @category, data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: 'delete_category_link' do %>
+                <i class="material-icons">delete</i>
+            <% end %>
         </div>
     </div>
 
     <div class="task_container">
-        <div class="task">
+        <div class="task_header">
             <h2>Tasks</h2>
-            <%= link_to 'Add New Task', new_category_task_path(@category), class: 'new_task_link' %>
-
-            <ul class="task_list">
-                <% @category.tasks.each do |task| %>
-                    <li class="task_card">
-                        <p>Title:<%= task.title %></p>
-                        <p>Due Date:<%= task.due_date.strftime("%B %d, %Y") %>
-                            <% if task.due_date.strftime("%H:%M") != "00:00" %>
-                                at <%= task.due_date.strftime("%I:%M %p") %>
+            <%= link_to new_category_task_path(@category), class: 'new_task_link' do %>
+                <i class="material-icons">add</i>
+            <% end %>
+        </div>
+        
+        <ul class="task_list">
+            <% @category.tasks.each do |task| %>
+                <li class="task_card">
+                    <p>Title:<%= task.title %></p>
+                    <p>Due Date:<%= task.due_date.strftime("%B %d, %Y") %>
+                        <% if task.due_date.strftime("%H:%M") != "00:00" %>
+                            at <%= task.due_date.strftime("%I:%M %p") %>
+                        <% end %>
+                    </p>
+                    <% if task.scheduled_date  %>
+                        <p>Schedule Date:<%= task.scheduled_date.strftime("%B %d, %Y") %>
+                            <% if task.scheduled_date.strftime("%H:%M") != "00:00" %>
+                            at <%= task.scheduled_date.strftime("%I:%M %p") %>
                             <% end %>
                         </p>
-                        <% if task.scheduled_date  %>
-                            <p>Schedule Date:<%= task.scheduled_date.strftime("%B %d, %Y") %>
-                                <% if task.scheduled_date.strftime("%H:%M") != "00:00" %>
-                                at <%= task.scheduled_date.strftime("%I:%M %p") %>
-                                <% end %>
-                            </p>
-                        <% end %>
-                        <p>Status:<%=task.status %></p>
+                    <% end %>
+                    <p>Status:<%=task.status %></p>
 
-                        <div class="buttons">
-                            <%= link_to 'Edit', edit_category_task_path(@category, task), class: 'edit_category_link' %> |
-                            <%= link_to 'Delete', category_task_path(@category, task), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'delete_category_link' %>
-                        </div>
-                    </li>
-                <% end %>
-            </ul>
-        </div>
+                    <div class="buttons">
+                        <%= link_to 'Edit', edit_category_task_path(@category, task), class: 'edit_category_link' %> |
+                        <%= link_to 'Delete', category_task_path(@category, task), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: 'delete_category_link' %>
+                    </div>
+                </li>
+            <% end %>
+        </ul>
     </div>
-</section>
+</div>

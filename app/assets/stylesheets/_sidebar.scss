@@ -1,17 +1,17 @@
 .sidebar {
+    font-family: "Poppins", sans-serif;
     background-color: #fbebec;
     padding: 20px;
     // position: fixed;
     // left: 50px;
     // top: 80px;
     // bottom: 20px;
-    width: 50vw;
+    width: 30vw;
     box-sizing: border-box;
     border-radius: 30px;
 }
 
-.sidebar_content {
-    font-family: "Poppins", sans-serif;
+.sidebar_container {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
@@ -27,8 +27,8 @@
         margin-bottom: 20px;
     }
     .material-icons {
-    color: #593b3a;
-    text-decoration: none;
+        color: #593b3a;
+        text-decoration: none;
         &:hover {
             background-color: #593b3a;
             color: #f8cccc;

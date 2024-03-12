@@ -60,7 +60,7 @@ class CategoriesController < ApplicationController
         if previous_category
             redirect_to category_path(previous_category), notice: 'Category was successfully deleted.'
         else
-            redirect_to categories_path, notice: 'Category was successfully deleted.'
+            redirect_to new_category_path, notice: 'Category was successfully deleted.'
         end
     end
 

@@ -24,7 +24,7 @@
         
         <ul class="task_list">
             <% @category.tasks.each do |task| %>
-                <li class="task_card">
+                <li class="<%= 'task_card ' + (task.status == 'completed' ? 'task_card_completed' : '')%>">
                     <div class="buttons">
                         <%= link_to edit_category_task_path(@category, task), class: 'edit_category_link' do %>
                             <i class="material-icons">edit</i>
@@ -45,14 +45,11 @@
 
                             <%= task.status %>
                         </p>
-                        <p>
-                            <%= task.due_date.strftime("%B %d, %Y") %>
-                            <% if task.due_date.strftime("%H:%M") != "00:00" %>
-                                at <%= task.due_date.strftime("%I:%M %p") %>
-                            <% end %>
-                        </p>
                         <% if task.scheduled_date && task.scheduled_date.to_date == Date.today %>
-                            <p>to do today</p>
+                            <p class="scheduled_date">
+                                <i class="material-icons">schedule</i>
+                                to do today
+                            </p>
                         <%# elsif task.scheduled_date %>
                             <!--<p>Scheduled:<%= task.scheduled_date.strftime("%B %d, %Y") %>
                                 <% if task.scheduled_date.strftime("%H:%M") != "00:00" %>
@@ -60,6 +57,12 @@
                                 <% end %>
                             </p>-->
                         <% end %>
+                        <p>
+                            <%= task.due_date.strftime("%B %d, %Y") %>
+                            <% if task.due_date.strftime("%H:%M") != "00:00" %>
+                                at <%= task.due_date.strftime("%I:%M %p") %>
+                            <% end %>
+                        </p>
                     </div>
                 </li>
             <% end %>
